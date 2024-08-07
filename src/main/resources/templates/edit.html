@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Savings</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">Edit Savings</h1>
+    <form th:action="@{/savings/edit}" th:object="${savings}" method="post" class="mt-3">
+        <input type="hidden" th:field="*{id}"/>
+        <div class="form-group">
+            <label>Customer Number</label>
+            <input type="number" th:field="*{customerNumber}" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" th:field="*{name}" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label>Initial Deposit</label>
+            <input type="number" step="0.01" th:field="*{initialDeposit}" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label>Number of Years</label>
+            <input type="number" th:field="*{numberOfYears}" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label>Savings Type</label>
+            <select th:field="*{savingsType}" class="form-control">
+                <option value="Savings Regular" th:selected="${savings.savingsType == 'Savings Regular'}">Savings Regular</option>
+                <option value="Savings De-luxe" th:selected="${savings.savingsType == 'Savings De-luxe'}">Savings De-luxe</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+    <a href="/savings" class="btn btn-secondary mt-3">Back to List</a>
+</div>
+</body>
+</html>
